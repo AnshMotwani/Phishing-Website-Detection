@@ -83,9 +83,13 @@ def predict():
     print("Extracted Features:", features)
     print("Scaled Features:", features_scaled)
     prediction = model.predict(features_scaled)[0]
+    prediction_proba = model.predict_proba(features_scaled)[0]
+    trust_score = round(float(prediction_proba[0]) * 100, 2)
+
     
     result = "Phishing" if prediction == 1 else "Safe"
-    return jsonify({"url": url, "prediction": result})
+    return jsonify({"url": url, "prediction": result, "trust_score": trust_score})
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

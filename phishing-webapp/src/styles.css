@@ -1,0 +1,104 @@
+/* styles.css */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+.container {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 350px;
+    transition: background 0.3s;
+}
+
+.dark-mode .container {
+    background: #1e1e1e;
+    color: white;
+}
+
+h1 {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.dark-mode h1 {
+    color: white;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.dark-mode input {
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+}
+
+input:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.dark-mode button {
+    background-color: #444;
+    color: white;
+}
+
+#result {
+    margin-top: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.result-safe {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.result-phishing {
+    background-color: #f8d7da;
+    color: #721c24;
+}
