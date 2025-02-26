@@ -1,0 +1,8 @@
+Flask
+joblib
+re
+urllib
+requests
+numpy
+pandas
+scikit-learn
