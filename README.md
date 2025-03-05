@@ -32,7 +32,7 @@ Extracted key phishing indicators from URLs:
 - ✅ **10-Fold Cross-Validation**
 - ✅ **Confusion Matrix**
 - ✅ **ROC Curve (Zoomed In for better analysis)**  
-✔ **Final Model Chosen**: **XGBoost ( Since fast execution and retraining and good accuracy )** (Best performance).  
+✔ **Final Model Chosen**: **XGBoost ( Since fast execution and retraining over browser extension )** (Best performance).  
 ✔ **Saved the trained model** (`phishing_model.pkl`) and **scaler** (`scaler.pkl`) for inference.  
 
 ### 3️⃣ **Flask API Backend**  
