@@ -1,19 +1,25 @@
 {
-    "manifest_version": 3,
-    "name": "Phishing Website Reporter",
-    "version": "1.0",
-    "description": "Report phishing or safe websites and improve the detection model.",
-    "permissions": ["activeTab", "storage", "scripting"],
-    "background": {
-      "service_worker": "background.js"
-    },
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": {
-        "16": "icon.png",
-        "48": "icon.png",
-        "128": "icon.png"
-      }
+  "manifest_version": 3,
+  "name": "Phishing Website Detector",
+  "version": "1.0",
+  "description": "Detect phishing websites using a machine learning backend.",
+  "permissions": ["tabs", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
     }
-  }
-  
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}

@@ -1,36 +1,24 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const urlInput = document.getElementById("urlInput");
-    const safeButton = document.getElementById("safeButton");
-    const phishingButton = document.getElementById("phishingButton");
-    const status = document.getElementById("status");
-
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-        if (tabs.length > 0) {
-            urlInput.value = tabs[0].url;
-        }
+document.addEventListener('DOMContentLoaded', async () => {
+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    let url = tab.url.trim().replace(/\/+$/, ""); 
+    document.getElementById('currentUrl').textContent = url;
+  
+    document.getElementById('checkBtn').addEventListener('click', async () => {
+      try {
+        const res = await fetch('http://127.0.0.1:5000/predict', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url })
+          });
+          
+  
+        const data = await res.json();
+        document.getElementById('result').textContent = 
+          `⚠️ This site is: ${data.prediction} (Trust Score: ${data.trust_score}%)`;
+      } catch (error) {
+        document.getElementById('result').textContent = "🚫 Error connecting to detection server.";
+        console.error(error);
+      }
     });
-
-    function submitReport(label) {
-        const url = urlInput.value.trim();
-        if (!url) {
-            status.textContent = "❌ Enter a valid URL!";
-            return;
-        }
-
-        fetch("http://127.0.0.1:5000/report", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ url: url, label: label })
-        })
-        .then(response => response.json())
-        .then(data => {
-            status.textContent = `✅ ${data.message}`;
-        })
-        .catch(error => {
-            status.textContent = "❌ Error sending data.";
-        });
-    }
-
-    safeButton.addEventListener("click", () => submitReport("safe"));
-    phishingButton.addEventListener("click", () => submitReport("phishing"));
-});
+  });
+  

@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phishing Reporter</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <title>Phishing Detector</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="popup.js" defer></script>
 </head>
+
 <body>
-    <h1>🔍 Report Website</h1>
-    <input type="text" id="urlInput" placeholder="Website URL" />
-    <div class="buttons">
-        <button id="safeButton" class="safe">✅ Safe</button>
-        <button id="phishingButton" class="phishing">🚨 Phishing</button>
-    </div>
-    <p id="status"></p>
-    <script src="popup.js"></script>
+    <h2>Phishing Check</h2>
+    <p><strong>URL:</strong> <span id="currentUrl">Loading...</span></p>
+    <button id="checkBtn">Check This Website</button>
+    <p id="result"></p>
 </body>
+
 </html>
