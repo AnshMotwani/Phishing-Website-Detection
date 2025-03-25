@@ -2,17 +2,28 @@
 <html>
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Phishing Detector</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="popup.js" defer></script>
+  <meta charset="UTF-8" />
+  <title>Phishing Detector</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="popup.js" defer></script>
 </head>
 
 <body>
-    <h2>Phishing Check</h2>
-    <p><strong>URL:</strong> <span id="currentUrl">Loading...</span></p>
-    <button id="checkBtn">Check This Website</button>
-    <p id="result"></p>
+  <h2>Phishing Check</h2>
+  <p><strong>URL:</strong> <span id="currentUrl">Loading...</span></p>
+  <button id="checkBtn">Check This Website</button>
+  <p id="result"></p>
+
+  <div id="feedbackSection" style="display: none; margin-top: 10px;">
+    <button id="reportToggleBtn">📢 Report This Website</button>
+
+    <div id="feedbackFollowUp" style="display: none; margin-top: 10px;">
+      <p>Help us improve:</p>
+      <button id="reportSafe">✅ Mark as Safe</button>
+      <button id="reportPhishing">🚨 Mark as Phishing</button>
+      <p id="reportStatus" style="margin-top: 8px;"></p>
+    </div>
+  </div>
 </body>
 
 </html>

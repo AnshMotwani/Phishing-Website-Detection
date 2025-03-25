@@ -1,32 +1,95 @@
 body {
-    font-family: Arial, sans-serif;
-    padding: 16px;
-    width: 300px;
-    background-color: #f3f4f6;
-    color: #333;
-  }
-  
-  h2 {
-    margin-top: 0;
-    color: #111827;
-  }
-  
-  button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #1d4ed8;
-  }
-  
-  #result {
-    margin-top: 15px;
-    font-weight: bold;
-  }
-  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+  width: 320px;
+  background-color: #f9fafb;
+  color: #111827;
+  margin: 0;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 20px;
+  color: #111827;
+}
+
+#popupCard {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #1e40af;
+}
+
+#result {
+  margin-top: 15px;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.result-safe {
+  background-color: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.result-phishing {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+#reportToggleBtn {
+  background-color: #f59e0b;
+  color: white;
+  margin-top: 15px;
+}
+
+#reportToggleBtn:hover {
+  background-color: #d97706;
+}
+
+.feedback-buttons button {
+  width: 48%;
+  margin-right: 4%;
+}
+
+.feedback-buttons button:last-child {
+  margin-right: 0;
+}
+
+#feedbackFollowUp button {
+  background-color: #e0e7ff;
+  color: #1e3a8a;
+}
+
+#feedbackFollowUp button:hover {
+  background-color: #c7d2fe;
+}
+
+#reportStatus {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2563eb;
+}
