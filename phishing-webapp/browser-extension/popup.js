@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   let rawUrl = tab.url.trim();
 
-  // Truncate to first 3 slashes
   function truncateToThreeSlashes(url) {
     let parts = url.split('/');
     return parts.slice(0, 3).join('/');
@@ -12,12 +11,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('currentUrl').textContent = cleanedUrl;
   let lastCheckedUrl = cleanedUrl;
 
-  document.getElementById('checkBtn').addEventListener('click', async () => {
+  async function checkUrl(url) {
     try {
       const res = await fetch('http://192.168.0.45:5000/predict', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: cleanedUrl })
+        body: JSON.stringify({ url: url })
       });
 
       const data = await res.json();
@@ -40,6 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           `${prefix} ${data.prediction} (Trust Score: ${trust})`;
 
         document.getElementById('feedbackSection').style.display = 'block';
+        lastCheckedUrl = url;
       } else {
         document.getElementById('result').textContent = "⚠️ Unexpected server response.";
       }
@@ -47,6 +47,30 @@ document.addEventListener('DOMContentLoaded', async () => {
       document.getElementById('result').textContent = "🚫 Error connecting to detection server.";
       console.error(error);
     }
+  }
+
+  document.getElementById('checkBtn').addEventListener('click', () => {
+    const toggle = document.getElementById('toggleCustomURL').checked;
+
+    if (toggle) {
+      const customUrlInput = document.getElementById('customUrlInput');
+      const customUrl = customUrlInput.value.trim();
+
+      try {
+        new URL(customUrl);
+        const truncatedCustomUrl = truncateToThreeSlashes(customUrl);
+        checkUrl(truncatedCustomUrl);
+      } catch (error) {
+        document.getElementById('result').textContent = "❌ Invalid URL. Please enter a valid URL.";
+      }
+    } else {
+      checkUrl(cleanedUrl);
+    }
+  });
+
+  document.getElementById('toggleCustomURL').addEventListener('change', (e) => {
+    const customSection = document.getElementById('customUrlSection');
+    customSection.style.display = e.target.checked ? "flex" : "none";
   });
 
   document.getElementById('reportToggleBtn').addEventListener('click', () => {

@@ -1,29 +1,134 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8" />
   <title>Phishing Detector</title>
   <link rel="stylesheet" href="style.css" />
   <script src="popup.js" defer></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background: linear-gradient(135deg, #5c626c 0%, #2d3a52 100%);
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 16px;
+      min-width: 320px;
+      max-width: 480px;
+      min-height: 100px;
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      color: #f3f4f6;
+      font-size: 14px;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #374151;
+      transition: 0.4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #3b82f6;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+  </style>
 </head>
-
 <body>
-  <h2>Phishing Check</h2>
-  <p><strong>URL:</strong> <span id="currentUrl">Loading...</span></p>
-  <button id="checkBtn">Check This Website</button>
-  <p id="result"></p>
+  <div class="container">
+    <div class="header">
+      <div class="header-icon">
+        <img src="icon.png" alt="Phishing Detector" style="width: 40px; height: 40px;">
+      </div>
+      <h2>Phishing Detector</h2>
+    </div>
 
-  <div id="feedbackSection" style="display: none; margin-top: 10px;">
-    <button id="reportToggleBtn">📢 Report This Website</button>
+    <div class="url-input-section">
+      <div class="toggle-container">
+        <span>Use Current URL</span>
+        <label class="switch">
+          <input type="checkbox" id="toggleCustomURL" />
+          <span class="slider"></span>
+        </label>
+        <span>Custom URL</span>
+      </div>
 
-    <div id="feedbackFollowUp" style="display: none; margin-top: 10px;">
-      <p>Help us improve:</p>
-      <button id="reportSafe">✅ Mark as Safe</button>
-      <button id="reportPhishing">🚨 Mark as Phishing</button>
-      <p id="reportStatus" style="margin-top: 8px;"></p>
+      <div class="url-display">
+        <strong>Current URL:</strong> <span id="currentUrl">Loading...</span>
+      </div>
+
+      <div class="custom-url-input" id="customUrlSection" style="display: none; flex-direction: column; gap: 10px; margin-top: 10px;">
+        <input 
+          type="text" 
+          id="customUrlInput" 
+          placeholder="Enter a URL to check (e.g., https://example.com)"
+        >
+      </div>
+    </div>
+
+    <button id="checkBtn">Analyze Selected Option</button>
+
+    <div id="result" style="margin-top: 16px;"></div>
+
+    <div id="feedbackSection" style="display: none; margin-top: 16px;">
+      <button id="reportToggleBtn">📢 Report Feedback</button>
+
+      <div id="feedbackFollowUp" style="display: none; margin-top: 12px;">
+        <button id="reportSafe">✅ Mark as Safe</button>
+        <button id="reportPhishing">🚨 Mark as Phishing</button>
+        <p id="reportStatus"></p>
+      </div>
     </div>
   </div>
 </body>
-
 </html>
