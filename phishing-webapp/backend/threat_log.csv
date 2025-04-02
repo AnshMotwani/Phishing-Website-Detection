@@ -1,0 +1,22 @@
+2025-04-02 01:19:38,https://chatgpt.com,Phishing,0.1,model
+2025-04-02 01:20:04,https://www.google.com,Safe,77.81,model
+2025-04-02 01:23:00 UTC,https://chatgpt.com,Phishing,0.1,model
+2025-04-02 01:51:19 UTC,https://www.google.com,Safe,77.81,model
+2025-04-02 01:51:29 UTC,https://www.ebay.com,Phishing,100.0,user
+2025-04-02 01:52:56 UTC,https://docs.google.com,Safe,78.03,model
+2025-04-02 01:53:09 UTC,https://docs.google.com,Safe,78.03,model
+2025-04-02 02:53:02 UTC,https://chatgpt.com,Safe,100.0,user
+2025-04-02 02:53:19 UTC,https://www.google.com,Safe,28.700000762939453,model
+2025-04-02 02:53:22 UTC,https://www.google.com,Safe,28.700000762939453,model
+2025-04-02 02:54:53 UTC,https://www.google.com,Safe,28.7,model
+2025-04-02 02:55:08 UTC,https://www.ebay.com,Phishing,100.0,user
+2025-04-02 02:55:40 UTC,https://www.ebay.com,Phishing,100.0,user
+2025-04-02 02:55:56 UTC,https://www.ebay.com,Safe,28.06,model
+2025-04-02 02:57:18 UTC,https://www.google.com,Safe,28.7,model
+2025-04-02 02:57:25 UTC,https://www.google.com,Safe,28.7,model
+2025-04-02 02:57:54 UTC,https://www.google.com,Safe,28.7,model
+2025-04-02 02:58:36 UTC,https://www.google.com,Safe,28.7,model
+2025-04-02 02:58:43 UTC,https://www.ebay.com,Safe,28.06,model
+2025-04-02 02:58:54 UTC,https://www.ebay.com,Safe,28.06,model
+2025-04-02 02:59:00 UTC,https://www.ebay.com123,Safe,58.54,model
+2025-04-02 02:59:04 UTC,https://www.ebay.com123..,Phishing,88.56,model

@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       const data = await res.json();
 
+      const resultDiv = document.getElementById('result');
+      resultDiv.textContent = "";
+
       if (data && data.prediction) {
         const trust = data.trust_score !== undefined ? `${data.trust_score}%` : "N/A";
 
@@ -28,20 +31,36 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (data.source === "user") {
           prefix = "📌 User-reported:";
         } else if (data.prediction === "Safe") {
-          prefix = "✅ This site is Safe:";
+          prefix = "✅ This site is:";
         } else if (data.prediction === "Phishing") {
-          prefix = "🚨 Warning! This site may be Phishing:";
+          prefix = "🚨 Warning! This site may be :";
         } else {
           prefix = "ℹ️ Result:";
         }
 
-        document.getElementById('result').textContent =
-          `${prefix} ${data.prediction} (Trust Score: ${trust})`;
+        resultDiv.textContent = `${prefix} ${data.prediction}`;
+        resultDiv.className = data.prediction === "Phishing" ? "result-phishing" : "result-safe";
 
-        document.getElementById('feedbackSection').style.display = 'block';
+        // Remove existing proceed button
+        const proceedButtonId = "proceedBtn";
+        let existingProceed = document.getElementById(proceedButtonId);
+        if (existingProceed) existingProceed.remove();
+
+        // Add Proceed Anyway if phishing
+        if (data.prediction === "Phishing") {
+          const proceedBtn = document.createElement("button");
+          proceedBtn.id = proceedButtonId;
+          proceedBtn.textContent = "⚠️ Proceed Anyway";
+          proceedBtn.style.marginTop = "12px";
+          proceedBtn.onclick = () => {
+            chrome.tabs.update({ url: url });
+          };
+          resultDiv.appendChild(proceedBtn);
+        }
+
         lastCheckedUrl = url;
       } else {
-        document.getElementById('result').textContent = "⚠️ Unexpected server response.";
+        resultDiv.textContent = "⚠️ Unexpected server response.";
       }
     } catch (error) {
       document.getElementById('result').textContent = "🚫 Error connecting to detection server.";
@@ -51,11 +70,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById('checkBtn').addEventListener('click', () => {
     const toggle = document.getElementById('toggleCustomURL').checked;
+    const customUrlInput = document.getElementById('customUrlInput');
 
     if (toggle) {
-      const customUrlInput = document.getElementById('customUrlInput');
       const customUrl = customUrlInput.value.trim();
-
       try {
         new URL(customUrl);
         const truncatedCustomUrl = truncateToThreeSlashes(customUrl);

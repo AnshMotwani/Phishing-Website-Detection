@@ -170,6 +170,19 @@ button:hover {
   text-align: center;
 }
 
+.result-safe {
+  background-color: #dcfce7;
+  color: #065f46;
+  border: 1px solid #34d399;
+}
+
+.result-phishing {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #f87171;
+}
+
+
 @media (prefers-color-scheme: dark) {
   body {
     background: linear-gradient(135deg, #1f2937, #111827);
@@ -212,6 +225,7 @@ button:hover {
     color: #f9fafb;
   }
 }
+
 
 @media screen and (max-width: 450px) {
   body {
